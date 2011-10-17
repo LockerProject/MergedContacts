@@ -18,18 +18,19 @@ $(function() {
             return hack.loadAll();
         }
         if ($('.clicked').length != 0) {
+          // TODO this logic is lame, need to port over my ListView class that does this correctly (justin)
             // down arrow
             if (e.keyCode === 40) {
                 if ($('.clicked').next().length != 0) {
                     $('.clicked').next().click();
-                    window.scrollBy(0, 71);
+                    $("#main").scrollBy(0, $("#contacts li:first-of-type").outerHeight());
                     return false;
                 }
             // up arrow
             } else if (e.keyCode === 38) {
                 if ($('.clicked').prev().length != 0) {
                     $('.clicked').prev().click();
-                    window.scrollBy(0, -71);
+                    $("#main").scrollBy(0, -$("#contacts li:first-of-type").outerHeight());
                     return false;
                 }
             }
@@ -102,11 +103,11 @@ $(function() {
 
         hideDetailsPane: function() {
             displayedContact = '';
-            $('aside').css('z-index', -1);
-            $('#main').stop().animate({
-                marginRight: '0px'}, 750, function() {
-                    $('.detail').hide();
-                })
+            // $('aside').css('z-index', -1);
+            // $('#main').stop().animate({
+            //     marginRight: '0px'}, 750, function() {
+            //         $('.detail').hide();
+            //     })
             return $('.clicked').removeClass('clicked');
         },
 
@@ -178,7 +179,8 @@ $(function() {
         },
 
         loadAll: function loadAll() {
-            $("#newHeader").hide();
+            $("#appHeader h1").text("People");
+            $("#appHeader .showAll").hide();
             this.hideDetailsPane();
 
             this.offset = 0;
@@ -196,8 +198,9 @@ $(function() {
             var self = this;
             if(!hack) hack = this;
             $.getJSON(baseUrl + "/Me/contacts/since", {id:objId}, function(contacts) {
-                $("#newCount").text(contacts.length + " New " + (contacts.length == 1 ? "Person" : "People"));
-                $("#newHeader").show();
+                $("#appHeader h1").text(contacts.length + " New " + (contacts.length == 1 ? "Person" : "People"));
+                $("#appHeader .showAll").show();
+                // $("#newHeader").show();
                 for(var i in contacts) {
                     self.addContact(contacts[i]);
                 }
@@ -209,8 +212,10 @@ $(function() {
             var self = this;
             if(!hack) hack = this;
             $.getJSON(baseUrl + "/Me/contacts/id/"+objId, function(contact) {
-                $("#newCount").text("Showing 1 Person");
-                $("#newHeader").show();
+              // $("#newCount").text("Showing 1 Person");
+                $("#appHeader h1").text("Showing 1 Person");
+                $("#appHeader .showAll").show();
+                // $("#newHeader").show();
                 self.addContact(contact);
                 self.render();
             })
@@ -252,8 +257,10 @@ $(function() {
         loadSearch: function loadSearch(q) {
             var that = this;
             if(!hack) hack = this;
-            $("#newCount").text("Showing Search Results");
-            $("#newHeader").show();
+            // $("#newCount").text("Showing Search Results");
+            $("#appHeader h1").text("Showing Search Results");
+            $("#appHeader .showAll").show();
+            // $("#newHeader").show();
             log("searching "+q);
             that.collection._reset();
             var baseURL = baseUrl + '/Me/search/query';
@@ -275,6 +282,8 @@ $(function() {
         updateDetails: function(contact) {
             $('.name').text(contact.name);
             $('.photo').attr('src', this.getPhoto(contact, true));
+            $('.contact-details').show();
+            $('.social-details').show();
             // twitter
             if (contact.accounts.twitter && contact.accounts.twitter[0].data) {
                 var twitter = contact.accounts.twitter[0].data;
@@ -317,12 +326,22 @@ $(function() {
             }
             // fb
             if (contact.accounts.facebook && contact.accounts.facebook[0].data) {
+              console.log("blah")
                 var fb = contact.accounts.facebook[0].data;
                 $('.facebookHandle').attr('href', fb.link);
                 $('.facebookHandle').text(fb.name);
                 $('.facebookSection').show();
             } else {
                 $('.facebookSection').hide();
+            }
+            // flickr
+            if (contact.accounts.flickr && contact.accounts.flickr[0].data) {
+                var flickr = contact.accounts.flickr[0].data;
+                $('.flickrHandle').attr('href', flickr.link);
+                $('.flickrHandle').text(flickr.username);
+                $('.flickrSection').show();
+            } else {
+                $('.flickrSection').hide();
             }
             // location
             var loc = this.getLocation(contact);
@@ -335,12 +354,17 @@ $(function() {
             }
             // animation
             if (!$('.detail').is(':visible')) {
-                $('.detail').show();
-                $('#main').stop().animate({
-                    marginRight: '374px'}, 750, function() {
-                        $('aside').css('z-index', 1);
-                    });
+                $('.empty').fadeOut();
+                $('.detail').fadeIn();
+                // $('#main').stop().animate({
+                //     marginRight: '374px'}, 750, function() {
+                //         $('aside').css('z-index', 1);
+                //     });
             }
+            // Hide empty contact / social details sections, if necessary
+            $('.contact-details li:visible').length == 0 ? $('.contact-details').hide() : $('.contact-details').show();
+            $('.social-details li:visible').length == 0 ? $('.social-details').hide() : $('.social-details').show();
+            console.log($('.social-details li:visible'))
         },
 
         /**
@@ -452,18 +476,17 @@ $(function() {
             // I could put this in a script tag on the page,
             // but i kind of like being able to comment lines
             contactTemplate =  '<li class="contact" data-cid="<%= id %>">';
-            contactTemplate += '<div class="contactSummary"><img src="<% if (typeof(smPhoto) != "undefined" ) { %><%= smPhoto %><% } else { %>/static/img/lock.png<% } %>"/>';
-            contactTemplate += '<strong><% if (typeof(name) != "undefined") { %><%= name %><% } %></strong>';
-            contactTemplate += '</div>';
-            contactTemplate += '<div class="contactActions">';
-            contactTemplate += '<% if (typeof(email) != "undefined") { %><a href="mailto:<%= email %>" target="_blank" class="social_link email">Email</a><% } %> ';
-            contactTemplate += '<% if (typeof(facebook) != "undefined") { %><a href="<%= facebook %>" class="social_link facebook" target="_blank">Facebook Profile</a><% } %>';
-            contactTemplate += '<% if (typeof(twitterHandle) != "undefined" && typeof(twitterHandle.data.screen_name) != "undefined") { %><a href="http://twitter.com/<%= twitterHandle.data.screen_name %>" class="social_link twitter" target="_blank">Twitter Profile</a><% } %>';
-            contactTemplate += '<% if (typeof(flickr) != "undefined" && typeof(flickr.data.username) != "undefined") { %><a href="http://flickr.com/people/<%= flickr.data.nsid %>" class="social_link flickr" target="_blank">Flickr Profile</a><% } %>';
-            contactTemplate += '<% if (typeof(foursquare) != "undefined" && typeof(foursquare.data.id) != "undefined") { %><a href="http://foursquare.com/user/<%= foursquare.data.id %>" class="social_link foursquare" target="_blank">Foursquare Profile</a><% } %>';
-            contactTemplate += '<% if (typeof(github) != "undefined" && typeof(github.data.login) != "undefined") { %><a href="http://github.com/<%= github.data.login %>" class="social_link github" target="_blank">GitHub Profile</a><% } %>';
-            contactTemplate += '</div>';
-            contactTemplate += '<div class="clear"></div></li>';
+            contactTemplate += '  <div class="contact-avatar"><img src="<% if (typeof(smPhoto) != "undefined" ) { %><%= smPhoto %><% } else { %>/static/img/lock.png<% } %>"/></div>';
+            contactTemplate += '  <div class="contact-name"><% if (typeof(name) != "undefined") { %><%= name %><% } %></div>';
+            contactTemplate += '  <div class="contact-actions">';
+            contactTemplate += '    <% if (typeof(email) != "undefined") { %><a href="mailto:<%= email %>" target="_blank" class="social_link email">Email</a><% } %> ';
+            contactTemplate += '    <% if (typeof(facebook) != "undefined") { %><a href="<%= facebook %>" class="social_link facebook" target="_blank">Facebook Profile</a><% } %>';
+            contactTemplate += '    <% if (typeof(twitterHandle) != "undefined" && typeof(twitterHandle.data.screen_name) != "undefined") { %><a href="http://twitter.com/<%= twitterHandle.data.screen_name %>" class="social_link twitter" target="_blank">Twitter Profile</a><% } %>';
+            contactTemplate += '    <% if (typeof(flickr) != "undefined" && typeof(flickr.data.username) != "undefined") { %><a href="http://flickr.com/people/<%= flickr.data.nsid %>" class="social_link flickr" target="_blank">Flickr Profile</a><% } %>';
+            contactTemplate += '    <% if (typeof(foursquare) != "undefined" && typeof(foursquare.data.id) != "undefined") { %><a href="http://foursquare.com/user/<%= foursquare.data.id %>" class="social_link foursquare" target="_blank">Foursquare Profile</a><% } %>';
+            contactTemplate += '    <% if (typeof(github) != "undefined" && typeof(github.data.login) != "undefined") { %><a href="http://github.com/<%= github.data.login %>" class="social_link github" target="_blank">GitHub Profile</a><% } %>';
+            contactTemplate += '  </div>';
+            contactTemplate += '</li>';
 
             addContactToHTML = function(c) {
                 // create a simple json obj to use for creating the template (if necessary)
