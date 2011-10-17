@@ -462,6 +462,7 @@ a.email
   background: url('../img/social-icons/mail.png');
 }
 
+/*
 #newHeader
 {
   display:none;
@@ -475,4 +476,31 @@ a.email
 
 .smallHeaderText {
   font-size: 12px;
+}
+
+*/
+
+.showAll
+{
+  display: none;
+  margin: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  float: left;
+  line-height: 1;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.showAll a
+{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.showAll a:hover
+{
+  text-decoration: underline;
 }

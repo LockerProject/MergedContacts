@@ -179,7 +179,8 @@ $(function() {
         },
 
         loadAll: function loadAll() {
-            $("#newHeader").hide();
+            $("#appHeader h1").text("People");
+            $("#appHeader .showAll").hide();
             this.hideDetailsPane();
 
             this.offset = 0;
@@ -197,8 +198,9 @@ $(function() {
             var self = this;
             if(!hack) hack = this;
             $.getJSON(baseUrl + "/Me/contacts/since", {id:objId}, function(contacts) {
-                $("#newCount").text(contacts.length + " New " + (contacts.length == 1 ? "Person" : "People"));
-                $("#newHeader").show();
+                $("#appHeader h1").text(contacts.length + " New " + (contacts.length == 1 ? "Person" : "People"));
+                $("#appHeader .showAll").show();
+                // $("#newHeader").show();
                 for(var i in contacts) {
                     self.addContact(contacts[i]);
                 }
@@ -210,8 +212,10 @@ $(function() {
             var self = this;
             if(!hack) hack = this;
             $.getJSON(baseUrl + "/Me/contacts/id/"+objId, function(contact) {
-                $("#newCount").text("Showing 1 Person");
-                $("#newHeader").show();
+              // $("#newCount").text("Showing 1 Person");
+                $("#appHeader h1").text("Showing 1 Person");
+                $("#appHeader .showAll").show();
+                // $("#newHeader").show();
                 self.addContact(contact);
                 self.render();
             })
@@ -253,8 +257,10 @@ $(function() {
         loadSearch: function loadSearch(q) {
             var that = this;
             if(!hack) hack = this;
-            $("#newCount").text("Showing Search Results");
-            $("#newHeader").show();
+            // $("#newCount").text("Showing Search Results");
+            $("#appHeader h1").text("Showing Search Results");
+            $("#appHeader .showAll").show();
+            // $("#newHeader").show();
             log("searching "+q);
             that.collection._reset();
             var baseURL = baseUrl + '/Me/search/query';
