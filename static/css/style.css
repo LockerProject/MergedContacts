@@ -1,377 +1,506 @@
-@font-face {
-    font-family: 'MuliRegular';
-    src: url('Muli-Regular-webfont.eot');
-    src: url('Muli-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Muli-Regular-webfont.woff') format('woff'),
-         url('Muli-Regular-webfont.ttf') format('truetype'),
-         url('Muli-Regular-webfont.svg#MuliRegular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'MuliLight';
-    src: url('Muli-Light-webfont.eot');
-    src: url('Muli-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('Muli-Light-webfont.woff') format('woff'),
-         url('Muli-Light-webfont.ttf') format('truetype'),
-         url('Muli-Light-webfont.svg#MuliLight') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
+/* Contacts Stylesheet ---------------------------------------------------- */
 
-@font-face {
-    font-family: 'nevisBold';
-    src: url('nevis-webfont.eot');
-    src: url('nevis-webfont.eot?#iefix') format('embedded-opentype'),
-         url('nevis-webfont.woff') format('woff'),
-         url('nevis-webfont.ttf') format('truetype'),
-         url('nevis-webfont.svg#nevisBold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-html {
-    height: 100%;
-}
-
-body {
-    font-family: 13.34px 'MuliLight',sans-serif;
-    background-color: rgb(235,235,235);
-    padding:0px;
-    margin: 0px;
-    height: 100%;
-    color: rgb(104,104,104);
+body
+{
+  margin: 0;
+  padding-left: 42px;
+  padding-right: 20px;
+  padding-top: 20px;
 }
 
 #content {
     display: table;
 }
 
-#main {
-    height: 100%;
-    margin-right: 0px;
+/* Header ----------------------------------------------------------------- */
+
+body > header
+{
+  /* display: none; */ /* Default to hidden while we find the collection */
+  margin-bottom: 20px;
 }
 
-aside {
-    z-index: -1;
-    width: 340px;
-    height: 100%;
-    position: fixed;
-    top: 0; right: 0;
-    margin-top: 0px;
-    padding: 17px;
-    padding-top:25px;
-    background-color: rgb(235,235,235);
-    box-shadow: rgba(0,0,0,0.4) -2px 2px 2px 0px inset;
-    font-family: 'MuliLight';
+body > header > h1
+{
+  margin: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: normal;
+  float: left;
+  line-height: 1;
 }
 
-aside a {
-    color: rgb(51,204,255);
-    text-decoration: none;
-    font-family: 'MuliRegular';
-    text-shadow: 0px 1px 1.5px #999;
+body > header:after
+{
+  content: "";
+  display: block;
+  clear: both;
 }
 
+/* Main Content ----------------------------------------------------------- */
 
-aside a:hover {
-    color: rgb(104,104,104);
-    text-decoration: none;
+#main
+{
+  position: absolute;
+  top: 64px;
+  left: 42px;
+  right: 360px;
+  bottom: 20px;
+
+  overflow-y: scroll;
+
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
 }
 
-aside a.address {
-    display: block;
+/* Details View / Sidebar ------------------------------------------------- */
+
+aside
+{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
-aside p {
-    margin:2px 0px 0px 0px;
-    color: rgb(51,51,51);
-    text-shadow: 0px 1px 1.5px #999;
-    text-align: left;
+aside:before
+{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-image: -webkit-radial-gradient(50% 50%, ellipse, rgba(0, 0, 0, 0.2), transparent 85%);
 }
 
-aside h1 {
-    margin: 0px;
-    font-size: 23px;
-    text-shadow: 0px 1px 1.5px #999;
+aside:after
+{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background-image: -webkit-radial-gradient(0% 50%, ellipse, rgba(0, 0, 0, 0.05), transparent 75%);
 }
 
-aside .small {
-    color: rgb(152,152,153);
-    margin: 0px;
-    font-size: 11px;
+aside .empty
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-aside img {
-    margin-top: 25px;
-    width: 150px;
-    border: solid 2px #999;
+aside .empty p
+{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -16px;
+
+  line-height: 32px;
+  height: 32px;
+  text-align: center;
+  font-size: 24px;
+
+  color: #aaa;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
+               "Helvetica Neue", sans-serif;
+  font-weight: 300;
 }
 
-aside img.icon {
-    width:16px;
-    height:16px;
-    float:left;
-    border: none;
-    margin-top: 2px;
-    margin-right: 10px;
+aside .detail
+{
+  display: none;
 }
 
-aside div.detail {
-    display: none;
-    padding-left:8px;
+aside .details-photo
+{
+  position: absolute;
+  left: 0;
+  top: 2px;
+  right: 0;
+  text-align: center;
+  height: 200px;
 }
 
-aside div.detail div {
-    padding: 5px 0px;
+aside .details-photo .photo-wrapper
+{
+  padding: 2px;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  -webkit-border-radius: 3px;
+  -moz-boder-radius: 3px;
+  border-radius: 3px;
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+
+  margin-top: 18px;
+  display: inline-block;
+  overflow: hidden;
 }
 
-#contacts {
-    min-height: 100%;
-    margin: 0px;
-    margin-left: 0px;
-    margin-top: 0px;
-    padding: 0px;
-    list-style:none;
-    text-shadow: 0px 1px 1px #999;
+aside .details-photo img
+{
+  height: 160px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  float: left;
 }
 
-.contact div.contactSummary {
-    display:inline-block;
-    font-family: 'MuliRegular';
-    color: rgb(67,67,67);
+aside .details-person:before
+{
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-image: -webkit-radial-gradient(50% 50%, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.00) 65%);
 }
 
-.contact div.contactSummary img {
-    float: left;
-    height: 50px;
-    width: 50px;
+aside .details-person:after
+{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  /*background-image: -webkit-gradient(radial, 50% 50%, 200, 50% 50%, 20, from(rgba(255, 255, 255, 0.00)), to(rgba(255, 255, 255, 1.00)));*/
+  background-image: -webkit-radial-gradient(50% 50%, rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.00) 65%);
+  background-image: -moz-radial-gradient(50% 50%, rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.00) 65%);
+  background-image: -ms-radial-gradient(50% 50%, rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.00) 65%);
+  background-image: radial-gradient(50% 50%, rgba(255, 255, 255, 1.00), rgba(255, 255, 255, 0.00) 65%);
 }
 
-.contact div.contactSummary strong {
-    font-size: 16px;
-    font-family: 'MuliLight';
-    color: rgb(67,67,67);
+aside .details-person
+{
+  position: absolute;
+  left: 0;
+  top: 212px;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
 }
 
-.contact div.contactActions {
-    float: right;
-    padding-right: 10px;
-    text-align: right;
+aside a
+{
+  color: rgba(0, 0, 0, 0.8);
+  text-decoration: none;
 }
 
-header div {
-    color: grey;
+aside a:hover
+{
+  color: rgba(0, 0, 0, 1);
+  text-decoration: underline;
 }
 
-.clear {
-    clear: both;
+aside a.address
+{
+  display: block;
 }
 
-#contacts {
-    overflow: hidden;
-    background: rgb(255,255,255);
+aside h1
+{
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #555;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  text-align: center;
 }
 
-#contacts li img {
-    margin-right: 10px;
+/* Contact / Social Details */
+
+.contact-details,
+.social-details
+{
+  list-style: none;
+
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1),
+    1px 0 0 rgba(255, 255, 255, 1),
+    -1px 0 0 rgba(255, 255, 255, 1),
+    0 1px 0 rgba(255, 255, 255, 1);
 }
 
-#contacts li {
-    margin: 0px;
-    margin-right: 1px;
-    padding-left: 30px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: 1px solid #bbb;
-    -moz-box-shadow: 1px 1px #999;
-    -webkit-box-shadow: 1px 1px #999;
-    box-shadow: 1px 0px 1px #999;
+.contact-details li,
+.social-details li
+{
+  position: relative;
+  line-height: 32px;
+  padding-left: 6px;
+  padding-right: 6px;
+  font-size: 12px;
 }
 
-#contacts li:hover {
-    margin: 0px;
-    padding-left: 30px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    margin-right: -3px;
-    border-bottom: 1px solid #bbb;
-    background-color: rgb(235,235,235);
-    box-shadow: rgba(0,0,0,0.4) 0px 2px 2px 0px inset;
+.contact-details li:after,
+.social-details li:after
+{
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-#contacts li.clicked {
-    margin: 0px;
-    padding-left: 30px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    margin-right: -3px;
-    border-bottom: 1px solid #bbb;
-    background-color: rgb(235,235,235);
-    box-shadow: rgba(0,0,0,0.4) 0px 2px 2px 0px inset;
+.contact-details li:last-of-type:after,
+.social-details li:last-of-type:after
+{
+  display: none;
 }
 
-#contacts li:hover a {
-    color: white;
+.service-label
+{
+  float: left;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.35);
 }
 
-#container {
-    height: 100%;
+.service-handle
+{
+  float: right;
 }
 
-a {
-    color:#aaa;
-    overflow:hidden;
+/* Contacts List ---------------------------------------------------------- */
+
+#contacts
+{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
 }
 
-/* Social Links */
-
-a.social_link {
-    font-size: 0px;
-    text-indent: -99999999999999999999px;
-    text-shadow: none;
-    display: block;
-    float: right;
-    height: 48px;
-    width: 48px;
-/*    opacity: 0.5; */
+#contacts li
+{
+  position: relative;
+  margin: 2px;
+  margin-bottom: 3px;
+  padding: 6px;
+  height: 48px;
 }
 
-a.social_link:hover {
-    cursor: pointer;
-
+#contacts li:after
+{
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-a.facebook {
-    background: url('../img/www.addictedtocoffee.de/facebook.png');
+#contacts li:last-of-type
+{
+  margin-bottom: 2px;
 }
 
-a.twitter {
-    background: url('../img/www.addictedtocoffee.de/twitter.png');
+#contacts li:last-of-type:after
+{
+  display: none;
 }
 
-a.github {
-    background: url('../img/www.addictedtocoffee.de/github.png');
+#contacts li:hover
+{
+  background-color: rgb(235,235,235);
 }
 
-a.flickr {
-    background: url('../img/www.addictedtocoffee.de/flickr.png');
+#contacts li.clicked
+{
+  background-color: rgb(235,235,235);
 }
 
-a.foursquare {
-    background: url('../img/www.addictedtocoffee.de/foursquare.png');
+#contacts li:hover a
+{
+  color: white;
 }
 
-a.email {
-    background: url('../img/mail.png');
+#contacts li .contact-avatar
+{
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  bottom: 6px;
+  width: 48px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 
-
-.blueGreyGrad {
-    background: rgb(206,220,231); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
-    background: linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
+#contacts li .contact-avatar img
+{
+  height: 48px;
+  width: 48px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 
-.logo_text{
-    font-family: 'nevisBold';
-    font-weight: bold;
-    font-size: 29px;
-    position:relative; top:-13px;
+#contacts li .contact-name
+{
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 70px;
+  line-height: 48px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light",
+               "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  color: rgb(67, 67, 67);
 }
 
-.returnbtn_text{
-    font-family: 'MuliLight';
-    font-size: 200px;
-    position:relative; top:-9px;
+#contacts li .contact-actions
+{
+  float: right;
 }
 
-.returnbtn_text a {
-    text-decoration: none;
-    color: #ccc;
-    margin-left: 4px;
-    font-size: 9px;
+a.social_link
+{
+  font-size: 0px;
+  display: block;
+  float: right;
+  height: 48px;
+  width: 48px;
+  background-repeat: no-repeat !important;
+  background-position: 50% 50% !important;
+  opacity: 0.5;
+  -webkit-transition: 0.25s opacity;
+  -moz-transition: 0.25s opacity;
+  -ms-transition: 0.25s opacity;
+  -o-transition: 0.25s opacity;
+  transition: 0.25s opacity;
+  cursor: pointer;
 }
 
-
-#returnbtn_bg {
-    border-color: rgb(153,153,153);
-    opacity: 0.8;
-    border-style:solid;
-    border-width:15px;
-    padding: 0px;
-    width:160px;
-    height:0;
-    right: 0px;
-    position:absolute; top:26px;
-    float:right;
+a.social_link:hover
+{
+  opacity: 0.9;
 }
 
-#returnbtn_bg:hover {
-   width:167px;
+a.facebook
+{
+  background: url('../img/social-icons/facebook.png');
 }
 
-
-#search_box {
-    background:-moz-linear-gradient(top, #ccc, #999);
-    background:-webkit-gradient(linear, 0 0, 0 100%, from(#ccc), to(#999));
-    border:1px solid #999;
-    border-radius:5px;
-    -moz-border-radius:5px;
-    -webkit-border-radius/:5px;
-    -moz-box-shadow:inset 0 1px #ccc, inset 0 -1px 2px #999, 0 0 0 0.5px rgba(102,102,102,0.45);
-    -webkit-box-shadow:inset 0 1px #ccc, inset 0 -1px 2px #999, 0 0 0 0.5px rgba(102,102,102,0.45);
-    padding:4px;
-    width:400px;
-    margin: 0px 20px 0px 20px;
+a.twitter
+{
+  background: url('../img/social-icons/twitter.png');
 }
 
-#search_box .wrapper {
-    background:#fff;
-    border:1px solid #999;
-    -moz-border-radius:2px;
-    -webkit-border-radius:2px;
-    -moz-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 2px #ccc;
-    -webkit-box-shadow:inset 0 1px 2px rgba(0,0,0,.3), 0 2px #ccc;
-    height: 40px;
-    padding-left:10px;
-    position:relative;
+a.github
+{
+  background: url('../img/social-icons/github.png');
 }
 
-#search_box input,
-#search_box input:focus { border:none; color:#999; outline:none; font: 14px 'MuliRegular', Helvetica, Arial, sans-serif; margin:11px 0; width:335px; }
-#search_box button {
-    background:-moz-linear-gradient(top, #453e26, #000);
-    background:-webkit-gradient(linear, 0 0, 0 100%, from(#453e26), to(#000));
-    border:1px solid #000;
-    -moz-border-radius:2px;
-    -webkit-border-radius:2px;
-    -moz-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,4);
-    -webkit-box-shadow:inset 0 -2px 3px #193544, inset 0 1px #907817, 0 1px 1px rgba(0,0,0,.4);
-    cursor:pointer;
-    height:55px;
-    position:absolute;
-    right:2px;
-    top:2px;
-    width:45px;
+a.flickr
+{
+  background: url('../img/social-icons/flickr.png');
 }
 
-#newHeader {
-    display:none;
-    top: 0px;
-    height:40px;
-    font-size:24px;
-    font-weight:bold;
-    padding-top:24px;
-    padding-left:30px;
+a.foursquare
+{
+  background: url('../img/social-icons/foursquare.png');
+}
+
+a.email
+{
+  background: url('../img/social-icons/mail.png');
+}
+
+/*
+#newHeader
+{
+  display:none;
+  top: 0px;
+  height:40px;
+  font-size:24px;
+  font-weight:bold;
+  padding-top:24px;
+  padding-left:30px;
 }
 
 .smallHeaderText {
-    font-size:12px;
+  font-size: 12px;
+}
+
+*/
+
+.showAll
+{
+  display: none;
+  margin: 0;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  float: left;
+  line-height: 1;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.showAll a
+{
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.showAll a:hover
+{
+  text-decoration: underline;
 }
