@@ -493,6 +493,10 @@ $(function() {
                 if (typeof(c.get('html')) == "undefined") {
                     var tmpJSON = c.toJSON();
 
+                    if (typeof(tmpJSON.name) == 'undefined' && typeof(tmpJSON.email) == 'undefined') {
+                        return;
+                    }
+
                     if (typeof(tmpJSON.name) == "undefined") {
                         tmpJSON.name = tmpJSON.email;
                     }
