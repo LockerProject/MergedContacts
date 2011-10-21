@@ -185,8 +185,8 @@ $(function() {
 
             this.offset = 0;
             if(!hack) hack = this;
-            $(window).scroll(function(){
-              if  ($(window).scrollTop() >= ($(document).height() - $(window).height() - 200)){
+            $("#main").scroll(function(){
+              if  (($("#main").offset().top + $("#main").scrollTop()) >= ($("#main ul").height() - $("#main").height() - 250)){
                 hack.load(function(){});
               }
             });
@@ -227,7 +227,7 @@ $(function() {
          */
         load: function load(callback) {
             var that = this;
-            log("loading "+that.offset);
+            //log("loading "+that.offset);
             if(!callback) callback = function(){};
             if(that.offset > total) return callback();
             if(that.loading) return callback();
