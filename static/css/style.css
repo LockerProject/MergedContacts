@@ -462,6 +462,11 @@ a.email
   background: url('../img/social-icons/mail.png');
 }
 
+a.instagram
+{
+  background: url('../img/social-icons/instagram.png');
+}
+
 /*
 #newHeader
 {
