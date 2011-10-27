@@ -418,48 +418,48 @@ a.social_link
   width: 48px;
   background-repeat: no-repeat !important;
   background-position: 50% 50% !important;
-  opacity: 0.5;
-  -webkit-transition: 0.25s opacity;
-  -moz-transition: 0.25s opacity;
-  -ms-transition: 0.25s opacity;
-  -o-transition: 0.25s opacity;
-  transition: 0.25s opacity;
+  opacity: 0.8;
+  -webkit-transition: 0.5s opacity;
+  -moz-transition: 0.5s opacity;
+  -ms-transition: 0.5s opacity;
+  -o-transition: 0.5s opacity;
+  transition: 0.5s opacity;
   cursor: pointer;
 }
 
 a.social_link:hover
 {
-  opacity: 0.9;
+  opacity: 1.0;
 }
 
 a.facebook
 {
-  background: url('../img/social-icons/facebook.png');
+  background: url('../img/social-icons/24px/facebook.png');
 }
 
 a.twitter
 {
-  background: url('../img/social-icons/twitter.png');
+  background: url('../img/social-icons/24px/twitter.png');
 }
 
 a.github
 {
-  background: url('../img/social-icons/github.png');
+  background: url('../img/social-icons/24px/github.png');
 }
 
 a.flickr
 {
-  background: url('../img/social-icons/flickr.png');
+  background: url('../img/social-icons/24px/flickr.png');
 }
 
 a.foursquare
 {
-  background: url('../img/social-icons/foursquare.png');
+  background: url('../img/social-icons/24px/foursquare.png');
 }
 
 a.email
 {
-  background: url('../img/social-icons/mail.png');
+  background: url('../img/social-icons/24px/email.png');
 }
 
 a.instagram
