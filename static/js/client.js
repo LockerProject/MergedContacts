@@ -267,7 +267,7 @@ $(function() {
             log("searching "+q);
             that.collection._reset();
             var baseURL = baseUrl + '/Me/search/query';
-            var type = 'contact/full*';
+            var type = 'contact*';
 
             $.getJSON(baseURL, {q: q + "*", type: type, limit: 20}, function(results) {
                 for(var i in results.hits) {
