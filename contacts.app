@@ -8,5 +8,6 @@
     "autoInstall":true,
     "static":"true",
     "viewer":"contacts",
-    "author":"Singly"
+    "github":"https://github.com/LockerProject/MergedContacts",
+    "author":"Singly, Inc."
 }
