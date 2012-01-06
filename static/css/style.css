@@ -467,6 +467,11 @@ a.instagram
   background: url('../img/social-icons/24px/instagram.png');
 }
 
+a.linkedin
+{
+  background: url('../img/social-icons/24px/linkedin.png');
+}
+
 /*
 #newHeader
 {

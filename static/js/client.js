@@ -153,6 +153,9 @@ $(function() {
                 if(contact.accounts.flickr) {
                     newContact.set({flickr: contact.accounts.flickr[0]});
                 }
+                if(contact.accounts.linkedin) {
+                    newContact.set({linkedin: contact.accounts.linkedin[0]});
+                }
             }
 
             this.collection.add(newContact); // add item to collection; view is updated via event 'add'
@@ -164,7 +167,6 @@ $(function() {
 
             that.collection = new AddressBook();
 
-            console.log(window.location);
             if (window.location.hash.substr(0,4) == "#new") {
                 that.loadSince(window.location.hash.substr(5));
             } else if (window.location.hash.substr(0,5) == "#view") {
@@ -238,7 +240,7 @@ $(function() {
             var baseURL = baseUrl + '/query/getContact';
             var fields = "['_id','addresses','emails','name','phoneNumbers','photos','accounts.facebook.data.link'," +
                          "'accounts.foursquare.data.id','accounts.github.data.login','accounts.instagram.data.username','accounts.twitter.data.screen_name'," +
-                         "'accounts.flickr.data.username','accounts.flickr.data.nsid']";
+                         "'accounts.flickr.data.username','accounts.flickr.data.nsid','accounts.linkedin.data.headline','accounts.linkedin.data.siteStandardProfileRequest']";
             var sort = '\'{"firstnamesort":1}\'';
             var terms = "[firstnamesort:\"a\"+]";
 
@@ -329,7 +331,6 @@ $(function() {
             }
             // fb
             if (contact.accounts.facebook && contact.accounts.facebook[0].data) {
-              console.log("blah")
                 var fb = contact.accounts.facebook[0].data;
                 $('.facebookHandle').attr('href', fb.link);
                 $('.facebookHandle').text(fb.name);
@@ -345,6 +346,15 @@ $(function() {
                 $('.flickrSection').show();
             } else {
                 $('.flickrSection').hide();
+            }
+            // linkedin
+            if (contact.accounts.linkedin && contact.accounts.linkedin[0].data) {
+                var linkedin = contact.accounts.linkedin[0].data;
+                $('.linkedinHandle').attr('href', linkedin.siteStandardProfileRequest.url);
+                $('.linkedinHandle').text(linkedin.headline);
+                $('.linkedinSection').show();
+            } else {
+                $('.linkedinSection').hide();
             }
             // location
             var loc = this.getLocation(contact);
@@ -475,6 +485,8 @@ $(function() {
             contactsEl = $("#contacts");
             contactsEl.html('');
             contactsHTML = "";
+            
+            
 
             // I could put this in a script tag on the page,
             // but i kind of like being able to comment lines
@@ -489,6 +501,7 @@ $(function() {
             contactTemplate += '    <% if (typeof(foursquare) != "undefined" && typeof(foursquare.data.id) != "undefined") { %><a href="http://foursquare.com/user/<%= foursquare.data.id %>" class="social_link foursquare" target="_blank">Foursquare Profile</a><% } %>';
             contactTemplate += '    <% if (typeof(github) != "undefined" && typeof(github.data.login) != "undefined") { %><a href="http://github.com/<%= github.data.login %>" class="social_link github" target="_blank">GitHub Profile</a><% } %>';
             contactTemplate += '    <% if (typeof(instagram) != "undefined" && typeof(instagram.data.username) != "undefined") { %><a href="http://listagr.am/n/<%= instagram.data.username %>" class="social_link instagram" target="_blank">Instagram Pics</a><% } %>';
+            contactTemplate += '    <% if (typeof(linkedin) != "undefined") { %><a href="<%= linkedin.data.siteStandardProfileRequest.url %>" class="social_link linkedin" target="_blank">LinkedIn Profile</a><% } %>';
             contactTemplate += '  </div>';
             contactTemplate += '</li>';
 
